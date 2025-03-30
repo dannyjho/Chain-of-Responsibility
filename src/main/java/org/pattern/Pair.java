@@ -16,7 +16,7 @@ public class Pair extends CardPattern {
     }
 
     @Override
-    protected int calculateValue() {
+    public int calculateValue() {
         int maxValue = 0;
         for (Card card : cards) {
             maxValue += card.getRank().getValue() * 100 + card.getSuit().getValue();

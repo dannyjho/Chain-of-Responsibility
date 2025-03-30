@@ -30,7 +30,7 @@ public class FullHouse extends CardPattern {
     }
 
     @Override
-    protected int calculateValue() {
+    public int calculateValue() {
         // 葫蘆的值由三張相同點數的牌決定
         Map<Rank, List<Card>> rankGroups = cards.stream()
                 .collect(Collectors.groupingBy(Card::getRank));

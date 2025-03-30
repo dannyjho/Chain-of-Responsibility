@@ -14,7 +14,7 @@ public abstract class CardPattern {
     public abstract boolean isValid(List<Card> cards);
 
     // 計算牌型的大小值，用於同類型比較
-    protected abstract int calculateValue();
+    public abstract int calculateValue();
 
     // 獲取牌型名稱/描述
     public abstract String getDescription();

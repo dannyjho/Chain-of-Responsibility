@@ -11,7 +11,7 @@ public class Single extends CardPattern {
     }
 
     @Override
-    protected int calculateValue() {
+    public int calculateValue() {
         // 單張牌的值就是牌的點數
         return cards.get(0).getRank().getValue() * 100 + cards.get(0).getSuit().getValue();
     }

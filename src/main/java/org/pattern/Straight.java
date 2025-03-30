@@ -73,7 +73,7 @@ public class Straight extends CardPattern {
     }
 
     @Override
-    protected int calculateValue() {
+    public int calculateValue() {
         // 順子的值由最大的牌決定
         return cards.stream()
                 .mapToInt(card -> card.getRank().getValue())
