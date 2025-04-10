@@ -1,6 +1,7 @@
 package org;
 
 import org.game.Big2;
+import org.pattern.*;
 
 import java.util.Scanner;
 
@@ -9,8 +10,21 @@ public class Main {
         System.out.println("歡迎來到大老二卡牌遊戲！");
         System.out.println("=========================");
 
+        // 創建責任鏈
+        CardPattern patternChain;
+        CardPattern fullHouse = new FullHouse();
+        CardPattern straight = new Straight();
+        CardPattern pair = new Pair();
+        CardPattern single = new Single();
+
+        fullHouse.setNext(straight);
+        straight.setNext(pair);
+        pair.setNext(single);
+
+        patternChain = fullHouse;
+
         // 創建遊戲實例
-        Big2 game = new Big2();
+        Big2 game = new Big2(patternChain);
 
         // 創建玩家
         System.out.println("\n【玩家創建階段】");

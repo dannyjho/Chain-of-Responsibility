@@ -1,8 +1,8 @@
 package org.game;
 
-import org.pattern.*;
 import org.model.Card;
 import org.model.Deck;
+import org.pattern.CardPattern;
 import org.player.AIPlayer;
 import org.player.HumanPlayer;
 import org.player.Player;
@@ -16,29 +16,15 @@ public class Big2 {
     private CardPattern topCardPattern;
     private int currentPlayerIndex;
     private int consecutivePassCount;
-    private CardPattern patternChain; // 牌型責任鏈
     private boolean gameOver = false;
+    private final CardPattern patternChain;
 
-    public Big2() {
+    public Big2(CardPattern patternChain) {
+        this.patternChain = patternChain;
         players = new ArrayList<>(4);
         topCardPattern = null;
         currentPlayerIndex = 0;
         consecutivePassCount = 0;
-        initializePatternChain();
-    }
-
-    // 初始化牌型責任鏈
-    private void initializePatternChain() {
-        CardPattern fullHouse = new FullHouse();
-        CardPattern straight = new Straight();
-        CardPattern pair = new Pair();
-        CardPattern single = new Single();
-
-        fullHouse.setNext(straight);
-        straight.setNext(pair);
-        pair.setNext(single);
-
-        patternChain = fullHouse;
     }
 
     // 創建玩家（從CLI收集玩家資訊）
@@ -107,7 +93,7 @@ public class Big2 {
                 }
 
                 // 有效出牌
-                System.out.println("玩家 "+ currentPlayer.getName() + " 打出了 " + pattern.getDescription() + " " + playedCards);
+                System.out.println("玩家 " + currentPlayer.getName() + " 打出了 " + pattern.getDescription() + " " + playedCards);
                 currentPlayer.removeCards(playedCards);
                 updateTopPlay(pattern);
 
